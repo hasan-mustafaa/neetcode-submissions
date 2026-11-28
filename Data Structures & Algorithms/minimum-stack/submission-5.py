@@ -1,0 +1,37 @@
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+        
+    """
+    2 Designs:
+    1. Only push and pop from min_stack when it's a new minimum (Chosen)
+    2. Push and pop from min_stack regardless if it's a new minimum
+    """
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if self.min_stack:
+            if self.min_stack[-1] >= val:
+                self.min_stack.append(val)
+        else:
+            self.min_stack.append(val)
+
+
+    def pop(self) -> None:
+        removed_val = self.stack.pop()
+        
+        if removed_val == self.min_stack[-1]:
+            self.min_stack.pop()
+        
+
+    def top(self) -> int:
+        return self.stack[-1]
+        
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
+
+    
+
+        
